@@ -1,0 +1,29 @@
+{
+  "name": "devtinder-backend",
+  "version": "1.0.0",
+  "description": "DevTinder is a RESTful backend for a developer networking app, powered by Express.js, Node.js, and MongoDB. It handles user profiles, smart matching, and real-time interactions to help developers find collaborators based on skills and interests.",
+  "keywords": [
+    "node.js",
+    "express.js"
+  ],
+  "homepage": "https://github.com/vishal-gupta5/DevTinder-Backend#readme",
+  "bugs": {
+    "url": "https://github.com/vishal-gupta5/DevTinder-Backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishal-gupta5/DevTinder-Backend.git"
+  },
+  "license": "ISC",
+  "author": "Vishal Gupta",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.1.5"
+  }
+}
