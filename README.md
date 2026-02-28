@@ -1,6 +1,6 @@
 # DevTinder-Backend
-- Create an App
-- Install the Express dependancies
-- Install the mongoose and mongdb
-- Establish the connection between application and database.
-- Install the Nodemon
+
+- Create an app
+- Install express and its depandancies
+- Install mongoose, bcrypt, cookie-parser, nodemon, jsonwebtoken
+- Connect the app through the database

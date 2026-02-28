@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  await mongoose.connect(
-    "mongodb+srv://vishal-guptaaa:vishal23mc32@namastenodejs.db8woif.mongodb.net/?appName=NamasteNodeJS",
-  );
+  try {
+    await mongoose.connect(process.env.MONGO_DB_URL);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
 };
 
 module.exports = connectDB;
