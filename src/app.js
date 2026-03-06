@@ -1,17 +1,18 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database");
+const authRouter = require("./routes/auth.router");
 
 const PORT = process.env.PORT || 6000;
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-    res.send("This is for testing the route")
-})
+// routes
+app.use("/auth", authRouter);
+
 
 connectDB()
   .then(() => {
