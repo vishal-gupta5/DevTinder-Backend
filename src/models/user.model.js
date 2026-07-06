@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validate = require("validator");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -6,6 +7,8 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      minLenght: 3,
+      maxLength: 50,
     },
     lastName: {
       type: String,
@@ -16,6 +19,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true,
+      lowercase: true,
+      validate: {
+        validator: function (value) {
+          return value.endsWith("@gmail.com");
+        },
+        message: "Only Email Address are allowed",
+      },
     },
     password: {
       type: String,
@@ -23,6 +34,12 @@ const UserSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
+      required: true,
+      validate(value) {
+        if (!["male", "female", "others"].includes(value)) {
+          throw new Error("Gender is not valid!");
+        }
+      },
     },
     skills: {
       type: [String],

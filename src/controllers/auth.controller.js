@@ -31,6 +31,8 @@ const signup = async (req, res) => {
       password: hashPassword,
     });
 
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
@@ -44,7 +46,7 @@ const signup = async (req, res) => {
 
     return res.status(201).json({
       message: "User Created Successfully!",
-      data: user,
+      data: userWithoutPassword,
       success: true,
     });
   } catch (err) {
@@ -85,8 +87,8 @@ const login = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
-    }); 
-  
+    });
+
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "lax",
@@ -94,9 +96,11 @@ const login = async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
     return res.status(200).json({
       message: "User Logged in Successfully!",
-      data: user,
+      data: userWithoutPassword,
       success: true,
     });
   } catch (err) {
