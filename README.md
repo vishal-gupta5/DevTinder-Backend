@@ -7,11 +7,4 @@
 - Create the User Model
 - Create SignUp, Login and Logout controller.
 
-  
- 
-   
- 
- 
-  
- 
- 
+
