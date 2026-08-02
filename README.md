@@ -9,3 +9,4 @@
 - Create Feed/user and Feed/feed API
 - Hide the password while showing the users
 - Create delete API in feed controller
+- Create update API in feed controller
