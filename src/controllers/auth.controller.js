@@ -6,9 +6,9 @@ const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, gender } = req.body;
 
-    if (!firstName || !lastName || !email || !password) {
+    if (!firstName || !lastName || !email || !password || !gender) {
       return res
         .status(400)
         .json({ message: "Something is missing!", success: false });
@@ -29,6 +29,7 @@ const signup = async (req, res) => {
       lastName,
       email,
       password: hashPassword,
+      gender
     });
 
     const { password: _, ...userWithoutPassword } = user.toObject();
