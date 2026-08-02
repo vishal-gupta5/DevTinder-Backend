@@ -6,8 +6,6 @@
 - Connect the app through the database
 - Create the User Model
 - Create SignUp, Login and Logout controller.
-<<<<<<< HEAD
-=======
- 
- 
->>>>>>> d8bac64f407d56f4ea231093afb9a6b18115a1c5
+- Create Feed/user and Feed/feed API
+- Hide the password while showing the users
+- Create delete API in feed controller
