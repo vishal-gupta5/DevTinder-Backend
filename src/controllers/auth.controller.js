@@ -32,7 +32,7 @@ const signup = async (req, res) => {
       gender
     });
 
-    const { password: _, ...userWithoutPassword } = user.toObject();
+    const { password:_, ...userWithoutPassword } = user.toObject();
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",

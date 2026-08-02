@@ -30,7 +30,7 @@ const feedUser = async (req, res) => {
 // Feed API -> Get all the users from the database
 const feed = async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).select("-password");
 
     if (!users) {
       return res
