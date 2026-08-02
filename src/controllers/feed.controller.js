@@ -15,7 +15,11 @@ const feed = async (req, res) => {
         .json({ message: "This user is not exist in database", status: false });
     }
 
-    return res.status(200).json({ message: "User Found!", status: true, user });
+    const { password, ...userWithoutPassword } = user.toObject();
+
+    return res
+      .status(200)
+      .json({ message: "User Found!", status: true, userWithoutPassword });
   } catch (err) {
     console.log(err);
     return res
