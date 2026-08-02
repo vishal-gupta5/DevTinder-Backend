@@ -51,8 +51,14 @@ const feed = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User not found!", status: false });
+    }
 
     return res.status(200).json({
       message: "User Deleted successfully!",
