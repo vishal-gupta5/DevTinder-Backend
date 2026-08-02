@@ -49,6 +49,7 @@ const feed = async (req, res) => {
   }
 };
 
+// Delete a user from the database
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.body;
@@ -72,4 +73,38 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { feedUser, feed, deleteUser };
+// Update the user from the database
+
+const updateUser = async (req, res) => {
+  try {
+    const { id, ...data } = req.body;
+
+    const user = await User.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+
+    console.log(user);
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User not found!", status: false });
+    }
+
+    // Hide the password
+    const { password, ...userWithoutPassword } = user.toObject();
+
+    return res.status(200).json({
+      message: "User's data updated successfully!",
+      status: true,
+      data: userWithoutPassword,
+    });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(400)
+      .json({ message: "Something went wrong!", status: false });
+  }
+};
+
+module.exports = { feedUser, feed, deleteUser, updateUser };
