@@ -34,7 +34,7 @@ const signup = async (req, res) => {
 
     const { password: _, ...userWithoutPassword } = user.toObject();
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
@@ -92,7 +92,7 @@ const login = async (req, res) => {
         .json({ message: "Invalid Password!", success: false });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 

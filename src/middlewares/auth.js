@@ -1,9 +1,9 @@
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
-const auth = async (req, res) => {
+const auth = async (req, res, next) => {
   try {
-    const token = req.cookie.token;
+    const token = req.cookies.token;
 
     if (!token) {
       return res
@@ -20,11 +20,21 @@ const auth = async (req, res) => {
     }
 
     const user = await User.findById(decode._id);
+
     req.user = user;
     next();
   } catch (err) {
+    if (err.name === "JsonWebTokenError" || err.name === "TokenExpiredError") {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid or expired token",
+      });
+    }
+
     console.log(`Error: ${err}`);
-    return res.status(400).json({ message: "Something went wrong!" , success: false});
+    return res
+      .status(400)
+      .json({ message: "Something went wrong!", success: false });
   }
 };
 

@@ -6,6 +6,7 @@ const {
   updateUser,
   feedUserById,
 } = require("../controllers/feed.controller");
+const auth = require("../middlewares/auth");
 const feedRouter = express.Router();
 
 feedRouter.get("/user", feedUser);
