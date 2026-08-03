@@ -11,7 +11,7 @@ const feedRouter = express.Router();
 feedRouter.get("/user", feedUser);
 feedRouter.get("/feed", feed);
 feedRouter.delete("/user", deleteUser);
-feedRouter.patch("/user", updateUser);
+feedRouter.patch("/user/:id", updateUser);
 feedRouter.get("/userById", feedUserById);
 
 module.exports = feedRouter;

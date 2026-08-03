@@ -102,7 +102,26 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { id, ...data } = req.body;
+    const { ...data } = req.body;
+    const id = req.params?.id;
+
+    const ALLOW_UPDATES = [
+      "firstName",
+      "lastName",
+      "password",
+      "gender",
+      "skills",
+      "photoUrl",
+      "about",
+    ];
+
+    const isAllowed = Object.keys(data).every((k) => ALLOW_UPDATES.includes(k));
+
+    if (!isAllowed) {
+      return res
+        .status(400)
+        .json({ message: "Update not allowed!", status: false });
+    }
 
     const user = await User.findByIdAndUpdate(id, data, {
       new: true,
