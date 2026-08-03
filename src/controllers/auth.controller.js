@@ -29,10 +29,10 @@ const signup = async (req, res) => {
       lastName,
       email,
       password: hashPassword,
-      gender
+      gender,
     });
 
-    const { password:_, ...userWithoutPassword } = user.toObject();
+    const { password: _, ...userWithoutPassword } = user.toObject();
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
@@ -51,6 +51,12 @@ const signup = async (req, res) => {
       success: true,
     });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: Object.values(err.errors)[0].message,
+      });
+    }
     console.log(`Error: ${err}`);
     return res
       .status(400)
@@ -67,7 +73,7 @@ const login = async (req, res) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Something is missing!", success: false });
+        .json({ message: "Invalid Credentials!", success: false });
     }
 
     const user = await User.findOne({ email });
@@ -75,7 +81,7 @@ const login = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json({ message: "User is not present in database", success: false });
+        .json({ message: "Invalid Credentials!", success: false });
     }
 
     const isValidpassword = await bcrypt.compare(password, user.password);
@@ -105,6 +111,12 @@ const login = async (req, res) => {
       success: true,
     });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: Object.values(err.errors)[0].message,
+      });
+    }
     console.log(`Error: ${err}`);
     return res
       .status(400)
