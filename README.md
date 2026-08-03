@@ -10,3 +10,4 @@
 - Hide the password while showing the users
 - Create delete API in feed controller
 - Create update API in feed controller
+- Create userById api for finding an user in database

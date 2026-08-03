@@ -27,6 +27,31 @@ const feedUser = async (req, res) => {
   }
 };
 
+// Feed API -> Get user by id
+const feedUserById = async (req, res) => {
+  try {
+    const id = req.body.id;
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User is not present", status: false });
+    }
+
+    const { password, ...userWithoutPassword } = user.toObject();
+
+    return res
+      .status(200)
+      .json({ message: "User Found", data: userWithoutPassword, status: true });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .josn({ message: "Something went wrong!", status: false });
+  }
+};
+
 // Feed API -> Get all the users from the database
 const feed = async (req, res) => {
   try {
@@ -84,7 +109,6 @@ const updateUser = async (req, res) => {
       runValidators: true,
     });
 
-    console.log(user);
     if (!user) {
       return res
         .status(400)
@@ -107,4 +131,4 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { feedUser, feed, deleteUser, updateUser };
+module.exports = { feedUser, feed, deleteUser, updateUser, feedUserById };

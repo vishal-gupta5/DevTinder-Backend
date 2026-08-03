@@ -49,6 +49,10 @@ const UserSchema = new mongoose.Schema(
       default:
         "https://png.pngtree.com/png-clipart/20200701/original/pngtree-character-default-avatar-png-image_5407167.jpg",
     },
+    about: {
+      type: String,
+      default: "This is a default about of ther user",
+    },
   },
   { timestamps: true },
 );
