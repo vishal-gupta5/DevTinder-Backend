@@ -11,3 +11,5 @@
 - Create delete API in feed controller
 - Create update API in feed controller
 - Create userById api for finding an user in database
+- Senitizationing the data before entering the database
+- Add API level validation of each field

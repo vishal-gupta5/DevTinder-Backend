@@ -124,7 +124,7 @@ const updateUser = async (req, res) => {
     }
 
     const user = await User.findByIdAndUpdate(id, data, {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
     });
 
