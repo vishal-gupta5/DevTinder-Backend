@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
     if (!token) {
       return res
         .status(400)
-        .json({ message: "Token is missing!", success: false });
+        .json({ message: "Invalid Tokens!!!!", success: false });
     }
 
     const decode = jwt.verify(token, process.env.JWT_SECRET);

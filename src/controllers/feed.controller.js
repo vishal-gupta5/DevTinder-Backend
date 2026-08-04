@@ -1,6 +1,6 @@
 const { model } = require("mongoose");
 const User = require("../models/user.model");
-
+  
 // Feed API -> Get user by email
 const feedUser = async (req, res) => {
   try {

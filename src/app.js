@@ -15,7 +15,7 @@ app.use(cookieParser());
 // routes
 app.use("/auth", authRouter);
 app.use("/feed", feedRouter);
-app.use("/profile", profileRouter);
+app.use("/", profileRouter);
 
 connectDB()
   .then(() => {
