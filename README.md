@@ -16,4 +16,4 @@
 - Make a auth middleware
 - Create a profile API
 - Create an instance method of getJWT
-- Create an instance method for validatePassword
+- Create an instance method for validatePassword 
