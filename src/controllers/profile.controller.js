@@ -33,10 +33,13 @@ const edit = async (req, res) => {
 
     await loggedInUser.save();
 
+    // Extract the password from loggedInUser
+    const { password, ...loggedInUserWithoutPassword } = loggedInUser.toObject();
+
     return res.status(200).json({
       message: "User updated successfully!",
       status: true,
-      data: loggedInUser,
+      data: loggedInUserWithoutPassword,
     });
   } catch (err) {
     console.error("error", err.message);
