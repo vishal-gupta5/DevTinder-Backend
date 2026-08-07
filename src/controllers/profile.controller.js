@@ -1,4 +1,6 @@
-const profile = async (req, res) => {
+// profile/view API
+
+const view = async (req, res) => {
   try {
     const user = req.user;
 
@@ -13,4 +15,20 @@ const profile = async (req, res) => {
   }
 };
 
-module.exports = { profile };
+// profile/edit API
+
+const edit = async (req, res) => {
+  try {
+    if (!validateEditProfit(req)) {
+      return res
+        .status(400)
+        .json({ message: "Invalid Edit Request!", status: false });
+    }
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Something went wrong!", status: false });
+  }
+};
+
+module.exports = { view };

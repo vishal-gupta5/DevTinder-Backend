@@ -70,6 +70,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "This is a default about of ther user",
     },
+    age: {
+      type: Number,
+    },
   },
   { timestamps: true },
 );
