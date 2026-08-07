@@ -1,8 +1,9 @@
 const express = require("express");
-const { view } = require("../controllers/profile.controller");
+const { view, edit } = require("../controllers/profile.controller");
 const auth = require("../middlewares/auth");
 const profileRouter = express.Router();
 
-profileRouter.get("/profile/view", auth, view);
+profileRouter.get("/view", auth, view);
+profileRouter.patch("/edit", auth, edit);
 
 module.exports = profileRouter;

@@ -1,4 +1,4 @@
-const validateEditProfit = (req) => {
+const validateEditProfile = (req) => {
   const allowedEditFields = [
     "firstName",
     "lastName",
@@ -15,3 +15,5 @@ const validateEditProfit = (req) => {
 
   return isEditAllowed;
 };
+
+module.exports = { validateEditProfile };
