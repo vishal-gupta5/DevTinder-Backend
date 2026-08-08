@@ -19,3 +19,4 @@
 - Create an instance method for validatePassword 
 - Create a /profile/edit API
 - Create a ConnectionRequest Model
+- Create a connectionRequest API

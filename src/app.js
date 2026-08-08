@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database");
 const authRouter = require("./routes/auth.router");
 const profileRouter = require("./routes/profile.router");
+const requestRouter = require("./routes/requset.router");
 
 const PORT = process.env.PORT || 6000;
 
@@ -14,6 +15,7 @@ app.use(cookieParser());
 // routes
 app.use("/auth", authRouter);
 app.use("/profile", profileRouter);
+app.use("/request", requestRouter); 
 
 connectDB()
   .then(() => {
