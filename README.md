@@ -17,3 +17,5 @@
 - Create a profile API
 - Create an instance method of getJWT
 - Create an instance method for validatePassword 
+- Create a /profile/edit API
+- Create a ConnectionRequest Model
