@@ -20,9 +20,7 @@
 - Create a /profile/edit API
 - Create a ConnectionRequest Model
 - Create a connectionRequest API
-<<<<<<< HEAD
 - Apply compound indexes in schema
 - Create respondToInterestedRequest API
-=======
-- Apply compound indexes in schema 
->>>>>>> f89b532979d062c2113d0676f064df47b37a6d90
+
+
