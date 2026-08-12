@@ -87,7 +87,7 @@ const login = async (req, res) => {
     if (!isValidpassword) {
       return res
         .status(400)
-        .json({ message: "Invalid Password!", success: false });
+        .json({ message: "Invalid Credentials!", success: false });
     }
 
     const token = await user.getJWT();

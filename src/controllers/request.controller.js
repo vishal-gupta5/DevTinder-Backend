@@ -1,7 +1,7 @@
 const ConnectionRequest = require("../models/connections.model");
 const User = require("../models/user.model");
 
-const send = async (req, res) => {
+const sendInterestedRequest = async (req, res) => {
   try {
     const fromUserId = req.user._id;
     const toUserId = req.params.toUserId;
@@ -58,4 +58,46 @@ const send = async (req, res) => {
   }
 };
 
-module.exports = { send };
+const respondToInterestedRequest = async (req, res) => {
+  try {
+    const loggedInUser = req.user;
+
+    const { status, requestId } = req.params;
+
+    // Validate the status
+    const allowedStatus = ["accepted", "rejected"];
+
+    if (!allowedStatus.includes(status)) {
+      return res
+        .status(400)
+        .json({ message: "Invalid status type!", status: false });
+    }
+
+    const connectionRequest = await ConnectionRequest.findOne({
+      _id: requestId,
+      toUserId: loggedInUser._id,
+      status: "interested",
+    });
+
+    if (!connectionRequest) {
+      return res
+        .status(400)
+        .json({ message: "Connection Request not found!", status: false });
+    }
+
+    connectionRequest.status = status;
+
+    const data = await connectionRequest.save();
+
+    return res
+      .status(200)
+      .json({ message: "Connection Request " + status, status: true});
+  } catch (err) {
+    console.log(err.message);
+    return res
+      .status(400)
+      .json({ message: "Something went wrong!", status: false });
+  }
+};
+
+module.exports = { sendInterestedRequest, respondToInterestedRequest };

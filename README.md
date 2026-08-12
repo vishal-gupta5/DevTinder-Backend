@@ -21,3 +21,4 @@
 - Create a ConnectionRequest Model
 - Create a connectionRequest API
 - Apply compound indexes in schema
+- Create respondToInterestedRequest API
