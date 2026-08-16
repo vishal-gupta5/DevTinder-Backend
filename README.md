@@ -4,7 +4,7 @@
 - Install express and its depandancies
 - Install mongoose, bcrypt, cookie-parser, nodemon, jsonwebtoken
 - Connect the app through the database
-- Create the User Model
+- Create the User Model 
 - Create SignUp, Login and Logout controller.
 - Create Feed/user and Feed/feed API
 - Hide the password while showing the users
