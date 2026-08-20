@@ -9,14 +9,16 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minLenght: 3,
+      minLength: 3,
       maxLength: 50,
     },
+
     lastName: {
       type: String,
       required: true,
       trim: true,
     },
+
     email: {
       type: String,
       required: true,
@@ -25,24 +27,30 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       validate: {
         validator: function (value) {
-          return value.endsWith("@gmail.com");
+          return validate.isEmail(value) && value.endsWith("@gmail.com");
         },
-        message: "Only Email Address are allowed",
+        message: "Please enter a valid Gmail address",
       },
     },
+
     password: {
       type: String,
       required: [true, "Password is required"],
       validate: {
         validator: function (value) {
-          return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-            value,
-          );
+          return validate.isStrongPassword(value, {
+            minLength: 8,
+            minLowercase: 1,
+            minUppercase: 1,
+            minNumbers: 1,
+            minSymbols: 1,
+          });
         },
         message:
           "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
       },
     },
+
     gender: {
       type: String,
       required: true,
@@ -52,6 +60,7 @@ const UserSchema = new mongoose.Schema(
         }
       },
     },
+
     skills: {
       type: [String],
       validate: {
@@ -61,15 +70,7 @@ const UserSchema = new mongoose.Schema(
         message: "Maximum 10 skills are allowed!",
       },
     },
-    photoURL: {
-      type: String,
-      default:
-        "https://png.pngtree.com/png-clipart/20200701/original/pngtree-character-default-avatar-png-image_5407167.jpg",
-    },
-    about: {
-      type: String,
-      default: "This is a default about of ther user",
-    },
+
     age: {
       type: Number,
     },

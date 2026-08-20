@@ -22,12 +22,20 @@ const signup = async (req, res) => {
         .json({ message: "User is already exist!", success: false });
     }
 
+    console.log("Password received:", req.body.password);
+    console.log(
+      "Password valid:",
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        req.body.password,
+      ),
+    );
+
     const hashPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
       firstName,
       lastName,
-      email, 
+      email,
       password: hashPassword,
       gender,
     });
